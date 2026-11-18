@@ -8,6 +8,7 @@ const mmss = (s) => { s = Math.max(0, Math.round(s || 0)); return `${Math.floor(
 const hms = (s) => { s = Math.max(0, Math.floor(s)); return [Math.floor(s / 3600), Math.floor(s / 60) % 60, s % 60].map((x) => String(x).padStart(2, '0')).join(':'); };
 const DAY = Math.floor(Date.UTC(2026, 10, 18) / 1000);   // the wall: every GTA 6 clip since release day began
 let rooms = {};                                         // slug -> room on air (the gateway's /status)
+let streamers = {};                                     // slug -> what they're streaming now (category, title)
 let slug = q.get('room') || 'xqc';                      // the room on the board
 let out = false;                                        // GTA 6 is out: the clock says so, or a room on air is playing it
 
@@ -94,7 +95,10 @@ async function allClips() {
   await Promise.all([...slugs].map(async (s) => {
     try {
       const j = await get(`/clips?slug=${encodeURIComponent(s)}&game=1&since=${DAY}`);
+      // the list's own game filter is any GTA (GTA IV and V too): keep a clip when its streamer is in GTA 6 now or its hook says so
+      const in6 = GTA6.test(streamers[s]?.category || '');
       for (const c of j.clips || []) {
+        if (!in6 && !GTA6.test(c.hook || '')) continue;
         seen.set(`${c.run}/${c.id}`, { src: `${API}${c.media}`, poster: c.poster ? `${API}${c.poster}` : '', hook: c.hook || '', who: c.streamer || s,
           dur: c.duration, after: c.after_moment_s, done: c.done_at || 0 });
       }
@@ -103,7 +107,7 @@ async function allClips() {
 }
 async function status() {
   try {
-    const st = await get('/status'); rooms = st.rooms || {};
+    const st = await get('/status'); rooms = st.rooms || {}; streamers = st.streamers || {};
     if (!q.get('room') && !rooms[slug]) { const top = Object.entries(rooms).sort(([, a], [, b]) => (b.viewers || 0) - (a.viewers || 0))[0]; if (top) slug = top[0]; }
     onairRow();
   } catch { /* the board's own fetch reports it */ }
