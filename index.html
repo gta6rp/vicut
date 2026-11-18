@@ -24,7 +24,7 @@
   <div class="wrap top-in">
     <a class="logo" href="#" aria-label="VICUT home"><img src="assets/mark.svg" alt="" width="34" height="34"><span class="wm"><b>VI</b>CUT</span></a>
     <nav class="nav" aria-label="Sections">
-      <a href="#live">Live</a><a href="#clips">Clips</a><a href="#how">How it works</a>
+      <a href="room/">Live room</a><a href="explore/">Explore</a><a href="#clips">Clips</a><a href="#how">How it works</a>
     </nav>
     <a class="btn btn-x" href="https://x.com/vicutfun" target="_blank" rel="noopener">Follow <span class="mono">@vicutfun</span></a>
   </div>
@@ -39,8 +39,8 @@
       <p class="lede">An AI cut room watches the biggest GTA 6 streams live, reads chat, and cuts the moments everyone's
         talking about while they're still happening: framed for your phone, captioned, posted.</p>
       <div class="ctas">
-        <a class="btn btn-main" href="#live">Watch it work</a>
-        <a class="btn btn-ghost" href="#clips">See the clips</a>
+        <a class="btn btn-main" href="room/">Watch the cut room live</a>
+        <a class="btn btn-ghost" href="explore/">Every GTA 6 stream</a>
       </div>
       <dl class="count" id="count" hidden>
         <div><dt>The drop</dt><dd class="mono" id="count-t">--:--:--</dd></div>
@@ -50,7 +50,8 @@
 
   <section class="sec" id="live">
     <div class="wrap">
-      <div class="sec-h"><span class="eyebrow">Live</span><h2 class="h2">The cut room, <em>right now.</em></h2></div>
+      <div class="sec-h"><span class="eyebrow">Live</span><h2 class="h2">The cut rooms, <em>right now.</em></h2></div>
+      <nav class="onair-row" id="onair-row" aria-label="Rooms on air"></nav>
       <div class="board" id="board">
         <div class="board-h">
           <span class="onair" id="onair"><i></i><span>Connecting…</span></span>
@@ -70,6 +71,7 @@
           </div>
         </div>
         <p class="board-off muted" id="board-off" hidden>The live room isn't reachable right now. Clips below still play.</p>
+        <a class="board-link" id="board-link" href="room/">Open the full live room: the stream, the signal, every cut →</a>
       </div>
     </div>
   </section>
@@ -111,6 +113,6 @@
       Clips are short excerpts of public streams, credited to the streamer.</p>
   </div>
 </footer>
-<script src="assets/app.js"></script>
+<script type="module" src="assets/app.js"></script>
 </body>
 </html>

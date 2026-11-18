@@ -2,7 +2,16 @@
 
 ## Done
 
-- **Site:** a one-page static site in this folder (`index.html`, `assets/`). No build step, relative paths.
+- **Site:** a static site in this folder, no build step, relative paths (it works under `/vicut/` now and at `/` on
+  vicut.fun). Three pages:
+  - `index.html`: the hero, the rooms on air, a compact board, the GTA 6 clip wall, how it works.
+  - `room/?s=<slug>`: the live cut room (ported from cutroom's /live board, without its coin, payout and posting
+    parts): the stream a few seconds behind live, what the room hears, the signal chart, the progress log, the editor's
+    call, the cut list and the latest cut with its studio edit. Tabs for every room on air.
+  - `explore/`: every GTA 6 stream the rooms follow that is live now, from the gateway's `/status`: "Cutting now" (a
+    room is on air), "Playing it right now" and "About to start". A new room shows up here with no site change.
+  Shared code: `assets/common.js` (the API base, the GTA 6 match, the profanity mask, the filter that keeps the engine's
+  internals off the page).
   Hosted on GitHub Pages from **github.com/gta6rp/vicut** at **https://gta6rp.github.io/vicut/**.
 - **Live data:** the page reads the xQc GTA 6 cut room on the Spark (`https://api.hookrs.fun/cutroom/live`):
   - `/xqc/state` (the board: what the room hears, the editor's calls, this session's clips);

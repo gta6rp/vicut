@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live room · VICUT</title>
+<meta name="description" content="Watch VICUT's cut room work a GTA 6 stream live: it hears every word, reads chat, finds the moment and cuts the clip in minutes.">
+<meta property="og:title" content="VICUT · the cut room, live">
+<meta property="og:description" content="An AI cut room watching a GTA 6 stream live: what it hears, the moment chat loses it, the editor's call and the clip.">
+<meta property="og:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@vicutfun">
+<meta name="twitter:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta name="theme-color" content="#0b0a16">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="../assets/room.css">
+</head>
+<body class="room-page">
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="../" aria-label="VICUT home"><img src="../assets/mark.svg" alt="" width="34" height="34"><span class="wm"><b>VI</b>CUT</span></a>
+    <nav class="nav" aria-label="Pages">
+      <a href="./" aria-current="page">Live room</a><a href="../explore/">Explore</a><a href="../#clips">Clips</a>
+    </nav>
+    <a class="btn btn-x" href="https://x.com/vicutfun" target="_blank" rel="noopener">Follow <span class="mono">@vicutfun</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="lv-head">
+    <div class="wrap">
+      <div class="lv-onair" id="onair"><span class="lv-dot"></span><b id="air-word">Connecting</b><span class="mono" id="air-clock">--:--:--</span></div>
+      <h1 class="cap lv-cap">The cut room, <span class="grad">working live.</span></h1>
+      <div class="lv-watch" id="watch"></div>
+    </div>
+  </section>
+
+  <section class="lv-board-sec">
+    <nav class="lv-rooms wrap" id="rooms" aria-label="Rooms on air"></nav>
+    <div class="wrap">
+      <div class="lv-board">
+        <div class="rp lv-feed">
+          <div class="rp-bar"><span class="dots"><i></i><i></i><i></i></span><span>source · <span id="src-name">kick</span></span><span class="tc" id="feed-tc">00:00:00</span></div>
+          <div class="lv-screen"><img id="thumb" alt="Latest frame from the stream" hidden><div class="lv-screen-empty" id="thumb-empty">waiting for the first frame</div><span class="lv-rec"><i></i>REC</span></div>
+          <div class="lv-hear">
+            <div class="lv-label"><span>What the room hears</span><span class="mono" id="tx-meta"></span></div>
+            <ol class="lv-tx" id="tx"></ol>
+          </div>
+        </div>
+
+        <div class="rp lv-signal">
+          <div class="rp-bar"><span class="dots"><i></i><i></i><i></i></span><span>signal · last 5 min</span><span class="tc" id="lag"></span></div>
+          <div class="lv-chart"><canvas id="chart" aria-label="Loudness, chat speed and moment score over the last five minutes"></canvas></div>
+          <p class="lv-key mono"><span><i class="k-loud"></i>loudness</span><span><i class="k-chat"></i>chat msgs/sec</span><span><i class="k-score"></i>moment score</span><span><i class="k-flag"></i>moment</span></p>
+          <p class="lv-explain long">A moment is when the stream gets loud, chat speeds up, people laugh or type “clip it”, all at once. Chat reacts a few seconds late (stream delay plus typing), so the room measures that delay and lines chat up with the audio.</p>
+          <div class="lv-log">
+            <div class="lv-label"><span>Progress log</span><span class="mono" id="log-n"></span></div>
+            <ol class="lv-logl" id="log"></ol>
+          </div>
+        </div>
+
+        <div class="lv-side">
+          <div class="rp lv-desk" id="deskp" hidden><div class="rp-bar"><span class="dots"><i></i><i></i><i></i></span><span>the editor's call</span><span class="tc" id="desk-tc"></span></div><div class="lv-desk-body" id="desk"></div></div>
+          <div class="rp lv-cuts">
+            <div class="rp-bar"><span class="dots"><i></i><i></i><i></i></span><span>cut list</span><span class="tc" id="cut-n">0 clips</span></div>
+            <div class="lv-cutlist" id="cuts"><p class="lv-empty">Connecting to the room…</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="lv-counters" id="counters"></div>
+      <div class="lv-show" id="show" hidden>
+        <div class="rp lv-latest"><div class="rp-bar"><span class="dots"><i></i><i></i><i></i></span><span>latest cut</span><span class="tc" id="latest-tc"></span></div><div class="lv-latest-body" id="latest"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">How a live cut works</span><h2 class="h2">Four stages. <em>Minutes, not days.</em></h2></div>
+      <ol class="steps">
+        <li><b>01</b><h3>Found</h3><p>The room scores every second against this streamer's own normal: loudness, chat speed, laughs, “clip it”. A spike in all of them at once is a moment.</p></li>
+        <li><b>02</b><h3>Editor</h3><p>An editor model reads the minute around it, looks at the frames, and drops what needs context or has no payoff. It writes the hook from what was actually said.</p></li>
+        <li><b>03</b><h3>Cut</h3><p>The keeper is framed for a phone (cam on top, gameplay below), captioned word by word, and rendered while the stream keeps going.</p></li>
+        <li><b>04</b><h3>Ready</h3><p>The finished clip lands in the cut list and on the clip wall, with how long after the moment it was ready.</p></li>
+      </ol>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="wm sm"><b>VI</b>CUT</span>
+    <p class="muted">A fan project. Not affiliated with or endorsed by Rockstar Games, Take-Two Interactive or any streamer.
+      Clips are short excerpts of public streams, credited to the streamer.</p>
+  </div>
+</footer>
+<script type="module" src="../assets/room.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explore · VICUT</title>
+<meta name="description" content="Every GTA 6 stream live right now, and the ones VICUT's cut rooms are clipping as they happen.">
+<meta property="og:title" content="VICUT · every GTA 6 stream, right now">
+<meta property="og:description" content="Who's live in GTA 6 right now, and which streams VICUT is clipping as they happen.">
+<meta property="og:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@vicutfun">
+<meta name="twitter:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta name="theme-color" content="#0b0a16">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="../" aria-label="VICUT home"><img src="../assets/mark.svg" alt="" width="34" height="34"><span class="wm"><b>VI</b>CUT</span></a>
+    <nav class="nav" aria-label="Pages">
+      <a href="../room/">Live room</a><a href="./" aria-current="page">Explore</a><a href="../#clips">Clips</a>
+    </nav>
+    <a class="btn btn-x" href="https://x.com/vicutfun" target="_blank" rel="noopener">Follow <span class="mono">@vicutfun</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="sec x-head">
+    <div class="wrap">
+      <span class="eyebrow">Explore</span>
+      <h1 class="h2 x-cap">Every GTA 6 stream, <em>right now.</em></h1>
+      <p class="sub">The streams the cut rooms follow, live this minute. A room on air is cutting that stream as you watch; open it to see every moment it reads.</p>
+      <dl class="x-stats" id="x-stats"></dl>
+      <p class="board-off muted" id="x-off" hidden>The rooms aren't reachable right now. Try again in a minute.</p>
+    </div>
+  </section>
+  <section class="sec x-sec">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">Cutting now</span><h2 class="h2">On air in a <em>cut room.</em></h2></div>
+      <div class="x-grid" id="x-on"></div>
+    </div>
+  </section>
+  <section class="sec x-sec">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">Live in GTA 6</span><h2 class="h2">Playing it <em>right now.</em></h2></div>
+      <div class="x-grid" id="x-gta"></div>
+    </div>
+  </section>
+  <section class="sec x-sec" id="x-soon-sec" hidden>
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">Warming up</span><h2 class="h2">Live, <em>about to start.</em></h2></div>
+      <div class="x-grid" id="x-soon"></div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="wm sm"><b>VI</b>CUT</span>
+    <p class="muted">A fan project. Not affiliated with or endorsed by Rockstar Games, Take-Two Interactive or any streamer.
+      Clips are short excerpts of public streams, credited to the streamer.</p>
+  </div>
+</footer>
+<script type="module" src="../assets/explore.js"></script>
+</body>
+</html>
