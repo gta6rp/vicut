@@ -315,7 +315,10 @@ function refreshThumb() {
   lastThumb = Date.now();
   const img = $('#thumb'); if (!img || S.hls) return;
   const next = new Image();
-  next.onload = () => { img.src = next.src; img.hidden = false; $('#thumb-empty').hidden = true; };
+  next.onload = () => {                   // (the live player may have taken the screen meanwhile)
+    if (!img.isConnected) return;
+    img.src = next.src; img.hidden = false; const e = $('#thumb-empty'); if (e) e.hidden = true;
+  };
   next.src = `${S.base}/thumb.jpg?t=${lastThumb}`;
 }
 async function reload() { try { applyState(await get(`/${encodeURIComponent(S.slug)}/state`)); return true; } catch { return false; } }
