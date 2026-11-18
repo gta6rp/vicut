@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VICUT · GTA 6 streams, clipped live</title>
+<meta name="description" content="VICUT watches the biggest GTA 6 streams live, reads chat, and cuts the moments everyone is talking about, minutes after they happen.">
+<meta property="og:title" content="VICUT · GTA 6 streams, clipped live">
+<meta property="og:description" content="An AI cut room watching GTA 6 streams live: every moment chat loses it over, cut, framed and captioned in minutes.">
+<meta property="og:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@vicutfun">
+<meta name="twitter:image" content="https://gta6rp.github.io/vicut/assets/og.png">
+<meta name="theme-color" content="#0b0a16">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top">
+  <div class="wrap top-in">
+    <a class="logo" href="#" aria-label="VICUT home"><img src="assets/mark.svg" alt="" width="34" height="34"><span class="wm"><b>VI</b>CUT</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#live">Live</a><a href="#clips">Clips</a><a href="#how">How it works</a>
+    </nav>
+    <a class="btn btn-x" href="https://x.com/vicutfun" target="_blank" rel="noopener">Follow <span class="mono">@vicutfun</span></a>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="sky" aria-hidden="true"><i class="sun"></i><i class="grid"></i></div>
+    <div class="wrap hero-in">
+      <p class="chip" id="hero-chip"><i></i><span>GTA 6 · day one</span></p>
+      <h1 class="cap"><span id="h-top">GTA 6 drops today.</span><br><span class="grad">We're clipping it.</span></h1>
+      <p class="lede">An AI cut room watches the biggest GTA 6 streams live, reads chat, and cuts the moments everyone's
+        talking about while they're still happening: framed for your phone, captioned, posted.</p>
+      <div class="ctas">
+        <a class="btn btn-main" href="#live">Watch it work</a>
+        <a class="btn btn-ghost" href="#clips">See the clips</a>
+      </div>
+      <dl class="count" id="count" hidden>
+        <div><dt>The drop</dt><dd class="mono" id="count-t">--:--:--</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="sec" id="live">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">Live</span><h2 class="h2">The cut room, <em>right now.</em></h2></div>
+      <div class="board" id="board">
+        <div class="board-h">
+          <span class="onair" id="onair"><i></i><span>Connecting…</span></span>
+          <b class="who" id="who">xQc</b>
+          <span class="mono muted" id="where">kick.com/xqc</span>
+          <span class="mono muted" id="viewers"></span>
+        </div>
+        <p class="title" id="title"></p>
+        <div class="board-cols">
+          <div class="panel">
+            <div class="panel-h">What the room hears</div>
+            <ol class="hears mono" id="hears"><li class="muted">Listening for the stream…</li></ol>
+          </div>
+          <div class="panel">
+            <div class="panel-h">The editor's calls</div>
+            <ol class="calls" id="calls"><li class="muted">When chat spikes, the editor reads the moment and makes the call here.</li></ol>
+          </div>
+        </div>
+        <p class="board-off muted" id="board-off" hidden>The live room isn't reachable right now. Clips below still play.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="clips">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">Clips</span><h2 class="h2">Cut from GTA 6 streams, <em>live.</em></h2>
+        <p class="sub">Each one says how long after the moment it was ready.</p></div>
+      <div class="wall" id="wall"></div>
+      <p class="wall-empty" id="wall-empty">The first GTA 6 clips land here minutes after the game drops.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="how">
+    <div class="wrap">
+      <div class="sec-h"><span class="eyebrow">How it works</span><h2 class="h2">From the stream to your feed <em>in minutes.</em></h2></div>
+      <ol class="steps">
+        <li><b>01</b><h3>Watch</h3><p>It tunes in to the stream itself, in 1080p, and stays on air for the whole session.</p></li>
+        <li><b>02</b><h3>Listen and read</h3><p>Every word is transcribed as it's said, and chat's pace is tracked second by second.</p></li>
+        <li><b>03</b><h3>The call</h3><p>When chat loses it, an editor model watches the moment, scores it and writes the hook. Most moments get dropped.</p></li>
+        <li><b>04</b><h3>Cut and post</h3><p>The keepers are framed for a phone (cam on top, gameplay below), captioned and posted while the moment is still fresh.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec follow">
+    <div class="wrap follow-in">
+      <img src="assets/mark.svg" alt="" width="64" height="64">
+      <div><h2 class="h2">Every five-star moment, <em>first.</em></h2><p class="sub">New clips all day while GTA 6 is live.</p></div>
+      <a class="btn btn-main" href="https://x.com/vicutfun" target="_blank" rel="noopener">Follow @vicutfun</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot-in">
+    <span class="wm sm"><b>VI</b>CUT</span>
+    <p class="muted">A fan project. Not affiliated with or endorsed by Rockstar Games, Take-Two Interactive or any streamer.
+      Clips are short excerpts of public streams, credited to the streamer.</p>
+  </div>
+</footer>
+<script src="assets/app.js"></script>
+</body>
+</html>
