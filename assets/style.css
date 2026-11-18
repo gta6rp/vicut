@@ -55,7 +55,7 @@ img, video { display: block; max-width: 100%; }
 /* hero: a sunset over a grid road */
 .hero { position: relative; overflow: hidden; padding: 96px 0 88px; border-bottom: 1px solid var(--line); }
 .sky { position: absolute; inset: 0; background: radial-gradient(120% 80% at 70% 100%, rgba(214, 58, 249, .28), transparent 60%), linear-gradient(180deg, #0b0a16 0%, #1a0f2e 55%, #2a1030 100%); }
-.sun { position: absolute; right: -3%; bottom: 16%; width: min(38vw, 470px); aspect-ratio: 1; border-radius: 50%; background: linear-gradient(180deg, var(--sun-1), var(--sun-2) 55%, var(--sun-3)); opacity: .9;
+.sun { position: absolute; right: -7%; bottom: 8%; width: min(34vw, 430px); aspect-ratio: 1; border-radius: 50%; background: linear-gradient(180deg, var(--sun-1), var(--sun-2) 55%, var(--sun-3)); opacity: .9;
   -webkit-mask: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 20px), linear-gradient(#000 45%, transparent 100%); -webkit-mask-composite: source-in; mask-composite: intersect; }
 .grid { position: absolute; left: -10%; right: -10%; bottom: 0; height: 34%; transform: perspective(380px) rotateX(58deg); transform-origin: bottom;
   background: linear-gradient(transparent 0 calc(100% - 1px), rgba(35, 240, 214, .35) 0) 0 0 / 100% 40px, linear-gradient(90deg, transparent 0 calc(100% - 1px), rgba(35, 240, 214, .35) 0) 0 0 / 60px 100%;
@@ -65,7 +65,7 @@ img, video { display: block; max-width: 100%; }
 .chip i { width: 9px; height: 9px; border-radius: 50%; background: var(--text-3); }
 .chip.live i { background: var(--hot); box-shadow: 0 0 0 4px var(--hot-wash); animation: pulse 1.4s infinite; }
 @keyframes pulse { 50% { box-shadow: 0 0 0 7px transparent; } }
-.cap { margin: 0; font: 400 clamp(52px, 9.5vw, 128px)/.92 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
+.cap { margin: 0; font: 400 clamp(52px, 8.6vw, 112px)/.92 var(--f-display); text-transform: uppercase; letter-spacing: .005em; }
 .grad { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .lede { max-width: 36em; margin: 26px 0 0; font-size: clamp(17px, 2.1vw, 20px); color: var(--text-2); }
 .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
