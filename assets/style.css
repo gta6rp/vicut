@@ -98,7 +98,8 @@ img, video { display: block; max-width: 100%; }
 .calls li { padding: 10px 12px; border-radius: 10px; background: var(--panel-2); font-size: 14px; }
 .calls li b { display: block; margin-bottom: 3px; }
 .calls .k { color: var(--cut); font: 700 12px var(--f-mono); }
-.calls .d { color: var(--hot); font: 700 12px var(--f-mono); }
+.calls .d { color: var(--hot); font: 700 12px var(--f-mono); margin-right: 8px; }
+.calls .k { margin-right: 8px; }
 .calls .why { color: var(--text-3); font-size: 13px; }
 .board-off { margin: 14px 0 0; font-size: 14px; }
 
