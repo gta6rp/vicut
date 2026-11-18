@@ -58,12 +58,14 @@
           : `<span class="d">DROPPED</span><span class="why">${esc(why.slice(0, 140))}</span>`}</li>`;
       }).join('');
     }
-    const gta = GTA.test(`${m.category} ${m.title}`) && Date.now() >= DROP;
+    // GTA 6 moments only: the stream's category says so (its title has said "GTA 6" since before the drop, over Just Chatting)
+    const gta = GTA.test(m.category || '') && Date.now() >= DROP;
     for (const c of st.clips || []) {
       if (!['ready', 'posting', 'posted', 'submitted', 'paid'].includes(c.stage) || !c.file) continue;
-      if (!(gta || GTA.test(c.hook || ''))) continue;   // only GTA 6 moments: not the Just Chatting before the drop
+      if (!(gta || GTA.test(c.hook || ''))) continue;
       const key = `${st.run}/${c.id}`;
-      if (!seen.has(key)) seen.set(key, { src: `${API}/${SLUG}/${c.file}`, poster: `${API}/${SLUG}/${c.file.replace(/\.mp4$/, '.jpg')}`, hook: c.hook || '',
+      // the gateway's /media addresses outlive the room's hour-long session (its own server stops when the hour ends)
+      if (!seen.has(key)) seen.set(key, { src: `${API}/media/${st.run}/${c.id}.mp4`, poster: `${API}/media/${st.run}/${c.id}.jpg`, hook: c.hook || '',
         who: m.name || SLUG, dur: c.duration, after: c.after_moment_s, done: (c.times || {}).ready || 0 });
     }
   }

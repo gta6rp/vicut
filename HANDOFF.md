@@ -6,7 +6,9 @@
   Hosted on GitHub Pages from **github.com/gta6rp/vicut** at **https://gta6rp.github.io/vicut/**.
 - **Live data:** the page reads the xQc GTA 6 cut room on the Spark (`https://api.hookrs.fun/cutroom/live`):
   - `/xqc/state` (the board: what the room hears, the editor's calls, this session's clips);
-  - `/clips?slug=xqc&game=1&since=…` (every GTA 6 clip across sessions, once the gateway offers it).
+  - `/clips?slug=xqc&game=1&since=…` (every GTA 6 clip across the room's hour-long sessions, newest first);
+  - `/media/<run>/<clip>.mp4` and `.jpg` (each clip's video and poster, at addresses that last).
+  The gateway (`clips/pipeline/live/gateway.py`) allows this site's origins in its CORS list.
   With the API unreachable, the page still works: the countdown, how it works, an honest empty wall, and a "not reachable"
   note on the board.
 - **Brand:** `BRAND.md` (name, tagline, palette, type, voice, trademark rules), the mark, the X avatar, the banner, the
@@ -31,9 +33,9 @@
 ## One link to cutroom that remains
 
 The page's data comes from `api.hookrs.fun/cutroom/live`, which visitors can see in the browser's network tab. To hide
-it, serve the API from `api.vicut.fun` through the same Cloudflare tunnel once the domain is on Cloudflare. The gateway's
-CORS list must include the site's origin (`https://gta6rp.github.io`, and later `https://vicut.fun` and
-`https://www.vicut.fun`).
+it, serve the API from `api.vicut.fun` through the same Cloudflare tunnel once the domain is on Cloudflare, and open the
+page with `?api=https://api.vicut.fun/cutroom/live` (or change `API` in `assets/app.js`). The gateway's CORS list already
+includes `https://gta6rp.github.io`, `https://vicut.fun` and `https://www.vicut.fun`.
 
 ## Updating the site
 
