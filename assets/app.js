@@ -27,13 +27,23 @@
   tickCount(); setInterval(tickCount, 1000);
 
   const seen = new Map();                                 // run/id -> clip, for the wall
+  const shown = new Map();                                // run/id -> its <figure> on the wall
+  // Keyed: a clip already on the wall is never re-rendered or moved (a visitor may be watching it); new ones are inserted
+  // in place, newest first.
   function wall() {
-    const list = [...seen.values()].sort((a, b) => (b.done || 0) - (a.done || 0));
-    $('wall').innerHTML = list.map((c) => `<figure class="clip"><div class="vid">
+    const box = $('wall');
+    for (const [key, c] of seen) {
+      if (shown.has(key)) continue;
+      const f = document.createElement('figure');
+      f.className = 'clip'; f.dataset.done = String(c.done || 0);
+      f.innerHTML = `<div class="vid">
         <video src="${esc(c.src)}"${c.poster ? ` poster="${esc(c.poster)}"` : ''} controls playsinline preload="${c.poster ? 'none' : 'metadata'}"></video>
         ${c.after ? `<span class="ready">ready ${mmss(c.after)} after</span>` : ''}</div>
-      <figcaption>${esc(c.hook)}<span>${esc(c.who)}${c.dur ? ` · ${Math.round(c.dur)} s` : ''}</span></figcaption></figure>`).join('');
-    $('wall-empty').hidden = list.length > 0;
+      <figcaption>${esc(c.hook)}<span>${esc(c.who)}${c.dur ? ` · ${Math.round(c.dur)} s` : ''}</span></figcaption>`;
+      box.insertBefore(f, [...box.children].find((n) => Number(n.dataset.done) < (c.done || 0)) || null);
+      shown.set(key, f);
+    }
+    $('wall-empty').hidden = shown.size > 0;
   }
 
   // one room's state: the board (what it hears, the editor's calls) and its GTA 6 clips on the wall
