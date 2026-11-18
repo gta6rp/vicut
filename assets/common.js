@@ -15,9 +15,8 @@ export function fmtNum(n) {
   if (n >= 1e3) return `${(n / 1e3).toFixed(n >= 1e4 ? 0 : 1)}K`;
   return String(Math.round(n));
 }
-// the page is public: anything a stream said is masked the same way the clips' captions are
-const BLEEP = [[/f+u+c+k/gi, 'f**k'], [/sh+i+t/gi, 'sh*t'], [/b+i+t+c+h/gi, 'b*tch'], [/d+i+c+k/gi, 'd*ck'], [/p+u+s+s+y/gi, 'p***y'], [/c+u+n+t/gi, 'c**t'], [/n+i+g+g\w*/gi, 'n***'], [/\bf+a+g+\w*/gi, 'f**'], [/r+e+t+a+r+d\w*/gi, 'r****d']];
-export const clean = (t) => BLEEP.reduce((x, [re, r]) => x.replace(re, r), String(t ?? ''));
+// what a stream said shows as it was said (the user, 2026-10-16: no masking on the site)
+export const clean = (t) => String(t ?? '');
 // what the engine says about its own plumbing (posting accounts, models, errors) stays off VICUT's pages
 export const INTERNAL = /cutroom|buffer|tiktok|instagram|youtube|posting|posted|warming up|program|bounty|payout|\$\d|codex|claude|openai|unavailable|error|traceback|failed|operator|@\w/i;
 export const get = (path) => fetch(`${API}${path}`, { cache: 'no-store' }).then((r) => (r.ok ? r.json() : Promise.reject(r.status)));
